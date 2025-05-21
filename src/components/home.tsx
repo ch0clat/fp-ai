@@ -34,7 +34,7 @@ function Home() {
       </div>
 
       <div className="container mt-4">
-        <h1 className="text-center">Face Prediction</h1>
+        <h1 className="text-center text-white">Face Prediction</h1>
 
         {!showPredict ? (
           <DropFileInput

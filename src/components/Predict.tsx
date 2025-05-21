@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
 
 interface PredictProps {
   files: File[];
@@ -14,7 +15,7 @@ const Predict: React.FC<PredictProps> = ({ files, onBack }) => {
 
   return (
     <div className="text-center">
-      <h3>Prediction Result</h3>
+      <h3 className="text-white">Prediction Result</h3>
       <div className="d-flex justify-content-center gap-4 my-4">
         {files.map((file, index) => (
           <div key={index}>
@@ -27,7 +28,7 @@ const Predict: React.FC<PredictProps> = ({ files, onBack }) => {
           </div>
         ))}
       </div>
-      <h4>Similarity Score: {score}%</h4>
+      <h4 className="text-white">Similarity Score: {score}%</h4>
 
       <button className="btn btn-secondary mt-4" onClick={onBack}>
         ← Back

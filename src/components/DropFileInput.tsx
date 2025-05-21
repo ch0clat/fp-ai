@@ -65,7 +65,7 @@ const DropFileInput: React.FC<DropFileInputProps> = ({
       >
         <div className="drop-file-input__label">
           <i className="bi bi-arrow-down-circle-fill"></i>
-          <p>Drag & Drop your files here</p>
+          <p className="">Drag & Drop your files here</p>
         </div>
         <input type="file" accept="image/*" onChange={onFileDrop} />
       </div>
