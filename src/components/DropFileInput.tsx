@@ -1,11 +1,16 @@
 import React, { useRef, useState, ChangeEvent } from "react";
 import "./drop-file-input.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 interface DropFileInputProps {
   onFileChange: (files: File[]) => void;
+  onPredict: () => void;
 }
 
-const DropFileInput: React.FC<DropFileInputProps> = ({ onFileChange }) => {
+const DropFileInput: React.FC<DropFileInputProps> = ({
+  onFileChange,
+  onPredict,
+}) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [fileList, setFileList] = useState<File[]>([]);
 
@@ -59,25 +64,44 @@ const DropFileInput: React.FC<DropFileInputProps> = ({ onFileChange }) => {
         onDrop={onDrop}
       >
         <div className="drop-file-input__label">
-          <img
-            src="https://media.geeksforgeeks.org/wp-content/uploads/20240308113922/Drag-.png"
-            alt="Drag & Drop"
-          />
+          <i className="bi bi-arrow-down-circle-fill"></i>
           <p>Drag & Drop your files here</p>
         </div>
         <input type="file" accept="image/*" onChange={onFileDrop} />
       </div>
 
       {fileList.length > 0 && (
-        <div className="image-preview-grid">
-          {fileList.map((file, index) => (
-            <div key={index} className="image-preview-item">
-              <img src={URL.createObjectURL(file)} alt={file.name} />
-              <p>{file.name}</p>
-              <button onClick={() => fileRemove(file)}>Remove</button>
+        <>
+          <div className="image-preview-grid d-flex justify-content-center gap-4 mt-4">
+            {fileList.map((file, index) => (
+              <div key={index} className="image-preview-item text-center">
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={file.name}
+                  className="img-thumbnail"
+                  style={{ maxWidth: "200px", height: "auto" }}
+                />
+                <p className="mt-2">{file.name}</p>
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => fileRemove(file)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+          {fileList.length === 2 && (
+            <div className="predict-button-wrapper text-center">
+              <button
+                className="btn btn-primary btn-lg active my-5"
+                onClick={onPredict}
+              >
+                Predict
+              </button>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </>
   );

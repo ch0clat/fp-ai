@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { Fragment } from 'react/jsx-runtime'
+import { useState } from "react";
+import { Fragment } from "react/jsx-runtime";
 import Home from "./components/Home";
-import './App.css'
+import "./App.css";
 
 function App() {
   return (
@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
